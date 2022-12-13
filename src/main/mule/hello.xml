@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="5a59a03c-b777-4306-9538-c40ce8155688" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="helloFlow" doc:id="8697a1e5-8a19-4da5-b07e-68c0a34c7f63" >
+		<http:listener doc:name="Listener" doc:id="eab528f3-0d03-4b6c-b9b4-f316cf627f41" config-ref="HTTP_Listener_config" path="/hello"/>
+		<set-variable value="#[20]" doc:name="Set Variable" doc:id="66da7a81-062a-4f74-b28e-f36d0ac09843" variableName="a"/>
+		<set-payload value='#["hello"]' doc:name="Set Payload" doc:id="ffcba965-49eb-495a-8f53-c8be11e4b743" />
+		<ee:transform doc:name="Transform Message" doc:id="c911fd11-5bc8-44cd-b492-3c6def965c33" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	message : payload ++ vars.a as String
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
