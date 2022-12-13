@@ -18,7 +18,7 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 output application/json
 ---
 {
-	message : payload ++ vars.a as String
+	message : payload ++ vars.a as String ++ "how r u"
 }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
