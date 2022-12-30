@@ -10,8 +10,8 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 	</http:listener-config>
 	<flow name="helloFlow" doc:id="8697a1e5-8a19-4da5-b07e-68c0a34c7f63" >
 		<http:listener doc:name="Listener" doc:id="eab528f3-0d03-4b6c-b9b4-f316cf627f41" config-ref="HTTP_Listener_config" path="/hello"/>
-		<set-variable value="#[20]" doc:name="Set Variable" doc:id="66da7a81-062a-4f74-b28e-f36d0ac09843" variableName="a"/>
-		<set-payload value='#["hello"]' doc:name="Set Payload" doc:id="ffcba965-49eb-495a-8f53-c8be11e4b743" />
+		<set-variable value="#[2]" doc:name="Set Variable" doc:id="66da7a81-062a-4f74-b28e-f36d0ac09843" variableName="a"/>
+		<set-payload value='#[" hello "]' doc:name="Set Payload" doc:id="ffcba965-49eb-495a-8f53-c8be11e4b743" />
 		<ee:transform doc:name="Transform Message" doc:id="c911fd11-5bc8-44cd-b492-3c6def965c33" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
